@@ -71,13 +71,17 @@ class Model {
 
 }
 class Vue{
+
+
+
+
     affichage(v){
         v.forEach(element => {
         let p=document.createElement("li")
         p.innerHTML=`<input type="checkbox" name="nom" id="" style="transform: scale(1.2); transform:translate(0,1px 0.5px);"> ${element}  <button class="del"><img src="bouton-supprimer.png" alt=""></button>`
         const parent=document.querySelector("ul")
         if(document.querySelectorAll("li")){
-            parent.insertBefore(p,parent.querySelector(":ntd:child(1)"))
+            parent.insertBefore(p,parent.firstElementChild)
         } else{
             parent.appendChild(p)
         }
@@ -90,9 +94,18 @@ class Vue{
     ensemble(v){
         window.addEventListener("load",()=>{
            this.affichage(v)
-           let p=document.querySelectorAll("")
-
         })
+        const toute=document.querySelector(".item1")
+        toute.addEventListener("click",()=>{
+            let ul=document.createElement("ul")
+            let p =document.createElement("li")
+            v.forEach(e=>{
+            p.innerHTML=`<input type="checkbox" name="nom" id="" style="transform: scale(1.2); transform:translate(0,1px 0.5px);"> ${e}  <button class="del"><img src="bouton-supprimer.png" alt=""></button>`
+            ul.insertBefore(p,ul.firstElementChild)
+            })
+            document.querySelector("ul").replaceWith(ul)
+        })
+
     }
 }
 const d={ama:4,koffi:7}
