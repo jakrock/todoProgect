@@ -73,7 +73,11 @@ class Model {
 class Vue{
 
 
-
+    constructor(toute,afaire,faite){
+        this.toute=toute
+        this.afaire=afaire
+        this.faite=faite
+    }
 
     affichage(v){
         v.forEach(element => {
@@ -88,7 +92,20 @@ class Vue{
         
         });
     }
-    jeudeclick(a,b,c){
+    jeudeclick(){
+      let boutton=document.querySelectorAll('.item')  
+      boutton.forEach((item)=>{
+        item.classList.remove("blue")
+        item.addEventListener("click",(e)=>{
+            
+            if (e.target.classList.contains("blue")){
+
+            }else{
+                e.target.classList.add("blue")
+            }
+        })
+
+      })
 
     }
     ensemble(v){
@@ -98,8 +115,9 @@ class Vue{
         const toute=document.querySelector(".item1")
         toute.addEventListener("click",()=>{
             let ul=document.createElement("ul")
-            let p =document.createElement("li")
+            
             v.forEach(e=>{
+            let p =document.createElement("li")
             p.innerHTML=`<input type="checkbox" name="nom" id="" style="transform: scale(1.2); transform:translate(0,1px 0.5px);"> ${e}  <button class="del"><img src="bouton-supprimer.png" alt=""></button>`
             ul.insertBefore(p,ul.firstElementChild)
             })
