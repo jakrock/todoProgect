@@ -34,5 +34,8 @@ img{
 .note{
     transform: translateY(0.8px);
 }
+.blue{
+    background-color: blue;
+}
 
 

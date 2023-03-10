@@ -72,7 +72,7 @@ class Model {
 }
 class Vue{
 
-
+    //le constructeur va contenir 
     constructor(toute,afaire,faite){
         this.toute=toute
         this.afaire=afaire
@@ -84,7 +84,7 @@ class Vue{
         let p=document.createElement("li")
         p.innerHTML=`<input type="checkbox" name="nom" id="" style="transform: scale(1.2); transform:translate(0,1px 0.5px);"> ${element}  <button class="del"><img src="bouton-supprimer.png" alt=""></button>`
         const parent=document.querySelector("ul")
-        if(document.querySelectorAll("li")){
+        if(document.querySelectorAll("li").length>0){
             parent.insertBefore(p,parent.firstElementChild)
         } else{
             parent.appendChild(p)
@@ -93,20 +93,26 @@ class Vue{
         });
     }
     jeudeclick(){
-      let boutton=document.querySelectorAll('.item')  
-      boutton.forEach((item)=>{
-        item.classList.remove("blue")
-        item.addEventListener("click",(e)=>{
-            
-            if (e.target.classList.contains("blue")){
+        let boutons = document.querySelectorAll('.item');
 
-            }else{
-                e.target.classList.add("blue")
-            }
-        })
-
-      })
-
+        boutons.forEach((bouton) => {
+          bouton.addEventListener("click", (e) => {
+            boutons.forEach((item) => {
+              if (e.target == item && e.target.classList.contains("blue")) {
+                // Ne rien faire si l'élément est déjà sélectionné
+              } else if (e.target == item && !e.target.classList.contains("blue")) {
+                // Ajouter la classe "blue" si l'élément est cliqué et n'est pas déjà sélectionné
+                e.target.classList.add("blue");
+              } else {
+                // Retirer la classe "blue" des autres éléments
+                if (e.target != item && item.classList.contains("blue")) {
+                  item.classList.remove("blue");
+                }
+              }
+            });
+          });
+        });
+        
     }
     ensemble(v){
         window.addEventListener("load",()=>{
@@ -119,14 +125,61 @@ class Vue{
             v.forEach(e=>{
             let p =document.createElement("li")
             p.innerHTML=`<input type="checkbox" name="nom" id="" style="transform: scale(1.2); transform:translate(0,1px 0.5px);"> ${e}  <button class="del"><img src="bouton-supprimer.png" alt=""></button>`
-            ul.insertBefore(p,ul.firstElementChild)
+            ul.appendChild(p)
             })
             document.querySelector("ul").replaceWith(ul)
-        })
-
+        })  
+        const afaire=document.querySelector(".item2")
+        afaire.addEventListener("click",()=>{
+            let ul=document.createElement("ul")
+            
+            v.forEach(e=>{
+            let p =document.createElement("li")
+            p.innerHTML=`<input type="checkbox" name="nom" id="" style="transform: scale(1.2); transform:translate(0,1px 0.5px);"> ${e}  <button class="del"><img src="bouton-supprimer.png" alt=""></button>`
+            ul.appendChild(p)
+            })
+            document.querySelector("ul").replaceWith(ul)
+        })  
+        const faite=document.querySelector(".item3")
+        faite.addEventListener("click",()=>{
+            let ul=document.createElement("ul")
+            
+            v.forEach(e=>{
+            let p =document.createElement("li")
+            p.innerHTML=`<input type="checkbox" name="nom" id="" style="transform: scale(1.2); transform:translate(0,1px 0.5px);"> ${e}  <button class="del"><img src="bouton-supprimer.png" alt=""></button>`
+            ul.appendChild(p)
+            })
+            document.querySelector("ul").replaceWith(ul)
+        })  
     }
+    sub(){
+        let text=document.querySelector(".note")
+        let submit=document.querySelector(".envoi")
+
+        submit.addEventListener("click",()=>{
+            if (text.value!=="" && document.querySelector(".item1").classList.contains("blue")){
+                let ul=document.querySelector("ul")
+                let p=document.createElement("li")
+            let s=document.querySelector(".note")
+                p.innerHTML=`<input type="checkbox" name="nom" id="" style="transform: scale(1.2); transform:translate(0,1px 0.5px);"> ${text.value}  <button class="del"><img src="bouton-supprimer.png" alt=""></button>`
+                ul.appendChild(p)
+            }
+        });
+        return text.value
+    }
+    checkerr(){
+        let macheckedbox=document.querySelector(".check")
+
+        
+    }
+
+
 }
 const d={ama:4,koffi:7}
 console.log(d)
 d.jean=4
 d.jean=5
+const b=[]
+const a=[1,23,5,6,7]
+b.push([a])
+console.log(b)
